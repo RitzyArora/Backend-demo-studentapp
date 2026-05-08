@@ -63,7 +63,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("angular", policy =>
     {
-        policy.WithOrigins("https://localhost:4200")
+        policy.WithOrigins("https://frontend-demo-studentapp.vercel.app")
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials();
@@ -168,15 +168,15 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "Student API V1");
         options.SwaggerEndpoint("/swagger/v2/swagger.json", "Student API V2");
     });
-}
+//}
 app.UseMiddleware<ExceptionMiddleware>();//custom middleware
 
 app.UseHttpsRedirection();
